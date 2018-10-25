@@ -1,0 +1,12 @@
+version: 1.0
+configuration:
+  has_webserver: true
+  scoring:
+    command: php bin/phpunit --coverage-xml coverage
+  ide_config:
+    default_open_files:
+      - score.sh
+    project_menu:
+      run: bin/console server start
+      install: echo install
+      test: php bin/phpunit --coverage-xml coverage

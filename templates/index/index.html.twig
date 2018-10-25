@@ -1,0 +1,52 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Test Application{% endblock %}</title>
+</head>
+<body>
+
+<div id="content">
+    <table style="border: 1px solid black">
+        <tr>
+            <th>
+                SKU
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Initial Currency
+            </th>
+            <th>
+                Value
+            </th>
+            <th>
+                Base Currency
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    {% block content %}
+        {% for item in data %}
+            <tr>
+                <td>{{ item.sku }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price.0.currency }}</td>
+                <td>{{ item.price.0.value }}</td>
+                {% if item.price.1.value %}
+                    <td>{{ item.price.1.currency }}</td>
+                    <td>{{ item.price.1.value }}</td>
+                {% else %}
+                    <td>EUR</td>
+                    <td>0.00</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    {% endblock %}
+    </table>
+</div>
+</body>
+</html>
